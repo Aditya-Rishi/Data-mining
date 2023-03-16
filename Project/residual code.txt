@@ -1,0 +1,58 @@
+In a left skewed distribution, the mean is less than the median. In a right skewed distribution, the mean is greater than the median. In a symmetrical distribution, the mean, median, and mode are all equal. A distribution is left skewed if it has a “tail” on the left side of the distribution. A distribution is right skewed if it has a “tail” on the right side of the distribution.
+
+We start by looking at the horizontal or x-axis to see how the data in each variable is grouped. Then, we look at the vertical or y-axis to see how frequently that data occurs.  Bar charts and histograms are similar but with some very specific differences. A bar chart groups numbers into categories, while histograms group numbers into ranges. Histograms are generally used to show the results of a continuous data.
+The spending range of up to 12(k or anything) rupees/dollars (or anything) has the highest number of customers (32+34=66)
+The highest number of customers for any advance payment range is 38 for between 13(k) and 14(k). There's nearabout 88% probability of full payment for 78 customers (39+39), which is the highest. 82 customers have have current balance between 5.1 and 5.4. The credit limit is most uniform across ranges, except when it touches 4. Understandable, as higher credit limit is only for a few. 37 customers (the most for any range) have minimum payment amount around 3. 100 customers (the most for any range) have spent between 5 and 5.3 on their biggest single shopping trips. Maybe they charged higher-value products on credit card for which cash payment isn't preferred.
+
+
+
+A kernel density estimate (KDE) plot is a method for visualizing the distribution of observations in a dataset, analagous to a histogram. KDE represents the data using a continuous probability density curve in one or more dimensions. It depicts the probability density at different values in a continuous variable.
+
+The density curve has two distinct peaks, indicating the distribution is bimodal.
+
+The KDE algorithm takes a parameter, bandwidth, that affects how “smooth” the resulting curve is. The KDE is calculated by weighting the distances of all the data points we’ve seen for each location on the blue line. If we’ve seen more points nearby, the estimate is higher, indicating that probability of seeing a point at that location.
+The has very low bandwidth and very high amplidude (almost 5 or 6 times). The probability of seeing a data point at that location is very slim.
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+df_std = scaler.fit_transform(df1)
+df_std
+df_std = pd.DataFrame(df_std, index=df1.index, columns=df1.columns)
+
+
+
+import plotly as py
+import plotly.graph_objs as go
+
+def tracer(db, n, name):
+    '''
+    This function returns trace object for Plotly
+    '''
+    return go.Scatter3d(
+        x = db[db['cluster']==n]['spending'],
+        y = db[db['cluster']==n]['advance_payments'],
+        z = db[db['cluster']==n]['probability_of_full_payment'],
+        mode = 'markers',
+        name = name,
+        marker = dict(
+            size = 5
+        )
+     )
+
+trace0 = tracer(df1, 0, 'Cluster 0')
+trace1 = tracer(df1, 1, 'Cluster 1')
+trace2 = tracer(df1, 2, 'Cluster 2')
+
+data = [trace0, trace1, trace2]
+
+layout = go.Layout(
+    title = 'Clusters by K-Means',
+    scene = dict(
+            xaxis = dict(title = 'spending'),
+            yaxis = dict(title = 'advance_payments'),
+            zaxis = dict(title = 'probability_of_full_payment')
+        )
+)
+
+fig = go.Figure(data=data, layout=layout)
+py.offline.iplot(fig)

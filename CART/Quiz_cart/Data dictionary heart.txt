@@ -1,0 +1,18 @@
+Data Dictionary: The following are the variables.
+1. age
+2. sex
+3. cp = chest pain type (4 values)
+4. trestbps= resting blood pressure
+5. chol= serum cholesterol in mg/dl
+6. fbs= fasting blood sugar > 120 mg/dl
+7. restecg= resting electrocardiographic results (values 0,1,2)
+8. thalach= maximum heart rate achieved
+9. exang= exercise induced angina
+10. oldpeak = ST depression induced by exercise relative to rest
+11. slope= the slope of the peak exercise ST segment
+12. ca= number of major vessels (0-3) colored by flourosopy
+13. Thal= 3 = normal; 6 = fixed defect; 7 = reversable defect
+
+14. target= presence of heart disease or not (0,1)
+
+Overfitting happens when the model has high complexity and captures both information & noise

@@ -1,0 +1,9 @@
+Data Dictionary:
+
+A data frame with 1959 observations on the following 6 variables.
+died	0=Alive;1=Died
+procedure	1=CABG; 0=PTCA
+gender	1=male; 0=female
+age	age of subject
+los	hospital length of stay
+type	1=emerg/urgent; 0=elective

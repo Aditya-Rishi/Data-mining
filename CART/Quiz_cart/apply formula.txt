@@ -1,0 +1,5 @@
+max_depth = 3
+max_split = 5
+data_split = 0.7
+
+https://inblog.in/The-Complete-Guide-to-Decision-Tree-esYW2GKffu
